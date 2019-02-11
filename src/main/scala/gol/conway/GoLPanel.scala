@@ -10,14 +10,14 @@ object GoLPanel {
 }
 
 class GoLPanel(var cellField: CellField) extends Panel {
-  
+
   import GoLPanel._
-  
+
   background = Color.darkGray
   preferredSize = new Dimension(cellField.rowCount * CellSize, cellField.columnCount * CellSize)
-  
+
   override protected def paintComponent(g: Graphics2D) {
-    super .paintComponent(g)
+    super.paintComponent(g)
     for (r <- 0 until cellField.rowCount) {
       val row = cellField.content(r)
       for (c <- 0 until cellField.columnCount) {
@@ -36,7 +36,7 @@ class GoLPanel(var cellField: CellField) extends Panel {
         }
       }
     }
-    
+
     g setColor Color.gray
     for (x <- 0 until size.width by CellSize)
       g.drawLine(x, 0, x, size.height)

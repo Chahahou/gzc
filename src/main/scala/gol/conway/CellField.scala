@@ -3,7 +3,7 @@ package gol.conway
 import scala.util.Random
 
 object CellField {
-  
+
   def computeNextGeneration(currGenField: CellField): CellField = {
     val nextGenContent = Array.ofDim[Cell](currGenField.rowCount, currGenField.columnCount)
     for (r <- 0 to (currGenField.rowCount - 1))
@@ -11,7 +11,7 @@ object CellField {
         nextGenContent(r)(c) = currGenField.getNextGenCell(r, c)
     new CellField(nextGenContent, currGenField.rowCount, currGenField.columnCount)
   }
-  
+
   def generateRandomField(rowCount: Int, columnCount: Int): CellField = {
     val content = Array.ofDim[Cell](rowCount, columnCount)
     for (r <- 0 to (rowCount - 1))
@@ -65,9 +65,9 @@ class CellField(
     val cellSE = { if (r == rowCount-1) None else if (c == columnCount-1) None else Some(content(r+1)(c+1)) }
     List(cellNW, cellN, cellNE, cellW, cellE, cellSW, cellS, cellSE).flatten
   }
-  
+
   def aliveCellCount: Int = content.map(r => { r.map(_.alive).sum }).sum
-  
+
   def print = {
     println(" # Alive Cells: " + aliveCellCount + "/" + (rowCount*columnCount))
     content
